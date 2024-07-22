@@ -15,8 +15,8 @@ data "local_file" "kvv2_policy_files" {
 }
 
 locals {
-	kvv1_secrets = {for a in flatten([for k,v in var.kv_v1_secrets: [for e,s in v: {engine = k, secret=s}]]): "${a.engine}/${a.secret}" => a}
-	kvv2_secrets = {for a in flatten([for k,v in var.kv_v2_secrets: [for e,s in v: {engine = k, secret=s}]]): "${a.engine}/${a.secret}" => a}
+	kvv1_secrets = {for a in flatten(try([for k,v in var.kv_v1_secrets: [for e,s in v: {engine = k, secret=s}]], [])): "${a.engine}/${a.secret}" => a}
+	kvv2_secrets = {for a in flatten(try([for k,v in var.kv_v2_secrets: [for e,s in v: {engine = k, secret=s}]], [])): "${a.engine}/${a.secret}" => a}
 	kvv1_secret_policies = {for a in setproduct(keys(data.local_file.kvv1_policy_files), keys(local.kvv1_secrets)): "${element(a,1)}-${data.local_file.kvv1_policy_files[element(a,0)].filename}" => merge({basename=replace(element(a,0),".hcl.tftpl", "")},local.kvv1_secrets[element(a,1)])}
 	kvv2_secret_policies = {for a in setproduct(keys(data.local_file.kvv2_policy_files), keys(local.kvv2_secrets)): "${element(a,1)}-${data.local_file.kvv2_policy_files[element(a,0)].filename}" => merge({basename=replace(element(a,0),".hcl.tftpl", "")},local.kvv2_secrets[element(a,1)])}
 }
