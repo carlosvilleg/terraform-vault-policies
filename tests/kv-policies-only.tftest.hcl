@@ -1,13 +1,9 @@
 
-run "all-secret-policies" {
+run "kv-policies" {
   command = plan
 
 	variables {
 		namespace_name = "test1"
-
-		database_roles = {
-			"postgres/app1" = {core_db = ["oltp", "reports"]}
-		}
 
 		kv_v1_secrets = {
 			"secrets/kvv1" = ["experiment1", "experiment2"]
@@ -29,7 +25,7 @@ run "all-secret-policies" {
     error_message = "Policies for kv-v2 users should be created"
   }
   assert {
-    condition     = length(keys(vault_policy.database-engine-user-policy)) == 1
+    condition     = length(keys(vault_policy.database-engine-user-policy)) == 0
     error_message = "Policy for database engine should be created"
   }
 }
