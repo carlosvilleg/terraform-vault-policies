@@ -3,7 +3,7 @@
 # You must replace the source (and version) to match your enviornment
 #
 
-module "root_policies" {
+module "admin_policies" {
 	source = "localterraform.com/MYORG/policies/vault"
 	version = "1.0.0"
 
