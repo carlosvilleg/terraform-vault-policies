@@ -6,31 +6,31 @@
 #
 
 variable "child_namespace" {
-	type = string
-	description = "Child namespace for the target policies. Defaults to example1"
-	default = "example1"
+  type        = string
+  description = "Child namespace for the target policies. Defaults to example1"
+  default     = "example1"
 }
 
 data "vault_namespace" "secret_ns" {
-	path = var.child_namespace
+  path = var.child_namespace
 }
 
 module "example1_policies" {
-	source = "localterraform.com/MYORG/policies/vault"
-	version = "1.0.0"
+  source  = "localterraform.com/MYORG/policies/vault"
+  version = "1.0.0"
 
-	namespace_name = data.vault_namespace.secret_ns.path
+  namespace_name = data.vault_namespace.secret_ns.path
 
-	database_roles = {
-		"postgres/app1" = {core_db = ["oltp", "reports"]}
-	}
+  database_roles = {
+    "postgres/app1" = { core_db = ["oltp", "reports"] }
+  }
 
-	kv_v1_secrets = {
-		"secrets/kvv1" = ["experiment1", "experiment2"]
-	}
+  kv_v1_secrets = {
+    "secrets/kvv1" = ["experiment1", "experiment2"]
+  }
 
-	kv_v2_secrets = {
-		"secrets/kvv2" = [ "experiment626" ]
-	}
+  kv_v2_secrets = {
+    "secrets/kvv2" = ["experiment626"]
+  }
 }
 

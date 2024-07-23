@@ -6,13 +6,13 @@
 #
 
 resource "vault_namespace" "admin_ns" {
-	path = "admin"
+  path = "admin"
 }
 
 module "admin_policies" {
-	source = "localterraform.com/MYORG/policies/vault"
-	version = "1.0.0"
-	
-	create_admin_namespace_policies = true
+  source  = "localterraform.com/MYORG/policies/vault"
+  version = "1.0.0"
+
+  create_admin_namespace_policies = true
 }
 

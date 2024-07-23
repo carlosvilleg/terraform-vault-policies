@@ -4,9 +4,9 @@
 #
 
 module "root_policies" {
-	source = "localterraform.com/MYORG/policies/vault"
-	version = "1.0.0"
+  source  = "localterraform.com/MYORG/policies/vault"
+  version = "1.0.0"
 
-	create_root_namespace_policies = true
+  create_root_namespace_policies = true
 }
 

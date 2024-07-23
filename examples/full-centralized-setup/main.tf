@@ -6,26 +6,26 @@
 #
 
 resource "vault_namespace" "secret_ns" {
-	path = "example1"
+  path = "example1"
 }
 
 module "example1_policies" {
-	source = "localterraform.com/MYORG/policies/vault"
-	version = "1.0.0"
+  source  = "localterraform.com/MYORG/policies/vault"
+  version = "1.0.0"
 
-	namespace_name = vault_namespace.secret_ns.path
+  namespace_name = vault_namespace.secret_ns.path
 
-	database_roles = {
-		"postgres/app1" = {core_db = ["oltp", "reports"]}
-	}
+  database_roles = {
+    "postgres/app1" = { core_db = ["oltp", "reports"] }
+  }
 
-	kv_v1_secrets = {
-		"secrets/kvv1" = ["experiment1", "experiment2"]
-	}
+  kv_v1_secrets = {
+    "secrets/kvv1" = ["experiment1", "experiment2"]
+  }
 
-	kv_v2_secrets = {
-		"secrets/kvv2" = [ "experiment626" ]
-	}
+  kv_v2_secrets = {
+    "secrets/kvv2" = ["experiment626"]
+  }
 
 }
 

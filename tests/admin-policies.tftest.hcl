@@ -2,10 +2,10 @@
 run "create-admin-ns-policies" {
   command = plan
 
-	variables {
-		create_admin_namespace_policies = true
-	}
-	
+  variables {
+    create_admin_namespace_policies = true
+  }
+
 
   assert {
     condition     = length(keys(vault_policy.admin_ns_policies)) > 1
@@ -32,10 +32,10 @@ run "create-admin-ns-policies" {
 run "dont-create-admin-ns-policies" {
   command = plan
 
-	variables {
-		create_admin_namespace_policies = false
-	}
-	
+  variables {
+    create_admin_namespace_policies = false
+  }
+
 
   assert {
     condition     = length(keys(vault_policy.admin_ns_policies)) == 0

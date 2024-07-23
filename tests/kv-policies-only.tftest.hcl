@@ -2,19 +2,19 @@
 run "kv-policies" {
   command = plan
 
-	variables {
-		namespace_name = "test1"
+  variables {
+    namespace_name = "test1"
 
-		kv_v1_secrets = {
-			"secrets/kvv1" = ["experiment1", "experiment2"]
-		}
+    kv_v1_secrets = {
+      "secrets/kvv1" = ["experiment1", "experiment2"]
+    }
 
-		kv_v2_secrets = {
-			"secrets/kvv2" = [ "experiment626" ]
-		}
+    kv_v2_secrets = {
+      "secrets/kvv2" = ["experiment626"]
+    }
 
-	}
-	
+  }
+
 
   assert {
     condition     = length(keys(vault_policy.kvv1-user-policy)) == 6

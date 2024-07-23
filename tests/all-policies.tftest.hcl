@@ -2,23 +2,23 @@
 run "all-secret-policies" {
   command = plan
 
-	variables {
-		namespace_name = "test1"
+  variables {
+    namespace_name = "test1"
 
-		database_roles = {
-			"postgres/app1" = {core_db = ["oltp", "reports"]}
-		}
+    database_roles = {
+      "postgres/app1" = { core_db = ["oltp", "reports"] }
+    }
 
-		kv_v1_secrets = {
-			"secrets/kvv1" = ["experiment1", "experiment2"]
-		}
+    kv_v1_secrets = {
+      "secrets/kvv1" = ["experiment1", "experiment2"]
+    }
 
-		kv_v2_secrets = {
-			"secrets/kvv2" = [ "experiment626" ]
-		}
+    kv_v2_secrets = {
+      "secrets/kvv2" = ["experiment626"]
+    }
 
-	}
-	
+  }
+
 
   assert {
     condition     = length(keys(vault_policy.kvv1-user-policy)) == 6

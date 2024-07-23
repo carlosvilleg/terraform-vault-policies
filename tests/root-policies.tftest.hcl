@@ -2,10 +2,10 @@
 run "create-root-ns-policies" {
   command = plan
 
-	variables {
-		create_root_namespace_policies = true
-	}
-	
+  variables {
+    create_root_namespace_policies = true
+  }
+
 
   assert {
     condition     = length(keys(vault_policy.root_ns_policies)) > 1
@@ -28,10 +28,10 @@ run "create-root-ns-policies" {
 run "dont-create-root-ns-policies" {
   command = plan
 
-	variables {
-		create_root_namespace_policies = false
-	}
-	
+  variables {
+    create_root_namespace_policies = false
+  }
+
 
   assert {
     condition     = length(keys(vault_policy.root_ns_policies)) == 0
