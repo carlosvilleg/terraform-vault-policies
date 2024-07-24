@@ -6,13 +6,17 @@
 #
 
 resource "vault_namespace" "admin_ns" {
+  provider = vault.root
+
   path = "admin"
 }
 
 module "admin_policies" {
-  source  = "localterraform.com/MYORG/policies/vault"
-  version = "1.0.0"
+  source  = "carlosvilleg/policies/vault"
+  version = "0.0.7"
 
   create_admin_namespace_policies = true
+
+  depends_on = [vault_namespace.admin_ns]
 }
 

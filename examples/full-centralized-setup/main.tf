@@ -10,8 +10,8 @@ resource "vault_namespace" "secret_ns" {
 }
 
 module "example1_policies" {
-  source  = "localterraform.com/MYORG/policies/vault"
-  version = "1.0.0"
+  source  = "carlosvilleg/policies/vault"
+  version = "0.0.7"
 
   namespace_name = vault_namespace.secret_ns.path
 
@@ -27,5 +27,6 @@ module "example1_policies" {
     "secrets/kvv2" = ["experiment626"]
   }
 
+  depends_on = [vault_namespace.secret_ns]
 }
 

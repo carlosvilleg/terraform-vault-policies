@@ -27,5 +27,6 @@ module "example1_policies" {
     "secrets/kvv2" = ["experiment626"]
   }
 
+  depends_on = [vault_namespace.secret_ns]
 }
 
