@@ -34,6 +34,13 @@ This module provides some useful polcies for the admin namespace. This is the na
 
 * super-admin
 * admin
+* namespace-admin
+* namespace-consumer
+* namespace-producer
+* policy-admin
+* policy-consumer
+* policy-producer
+* ui
 
 ## Supported secret engines
 
